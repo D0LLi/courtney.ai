@@ -9,21 +9,25 @@ interface Props {
     img: string;
     alt: string;
     url: string;
+    technologies: string[];
 }
 
 function ProjectItem(props: Props) {
+    const {name, description, img, alt, url, technologies} = props;
     return (
         <li className={"group-item"}>
             <div className={"group-block"}>
-                <div className={"project-info"}>
+                <div className={"group-background absolute z-0"}>
+                </div>
+                <div className={"project-info z-10"}>
                     <h3 className={"project-name font-medium"}>
                         <div>
-                            <a className={"group-link"} href={props.url} target={"_blank"} rel={"noreferrer noopener"}
-                               aria-label={`${props.name} (opens in a new tab)`}>
+                            <a className={"group-link"} href={url} target={"_blank"} rel={"noreferrer noopener"}
+                               aria-label={`${name} (opens in a new tab)`}>
                                 <span className={"group-span"}>
                                 </span>
                                 <span className={"inline-block"}>
-                                    {props.name}
+                                    {name}
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                          className="link-arrow transition-transform"
                                          aria-hidden="true">
@@ -34,16 +38,24 @@ function ProjectItem(props: Props) {
                                     </svg>
                                 </span>
                             </a>
-
                         </div>
                     </h3>
                     <p className={"project-description"}>
-                        {props.description}
+                        {description}
                     </p>
+                    <ul className={"technologies-list"} aria-label={"Technologies Used"}>
+                        {technologies.map((technology, index) => (
+                            <li className={"technologies-item"}>
+                                <div className={"technologies-div font-xs font-medium"}>
+                                    {technology}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <img className={"project-img"} alt="Android Dungeon Crawler"
+                <img className={"project-img z-10"} alt={alt}
                      loading={"lazy"} width={"200"} height={"48"} decoding={"async"}
-                     src={props.img}>
+                     src={img}>
                 </img>
             </div>
         </li>
@@ -54,11 +66,20 @@ export function Projects() {
     return (
         <ul className={"group"}>
             <ProjectItem
+                name={"courtney.ai"}
+                description={"A React.js and TypeScript based personal website."}
+                img={dungeon}
+                alt={"courtney.ai"}
+                url={"https://www.github.com"}
+                technologies={["HTML", "CSS", "React.js", "TypeScript", "WebStorm"]}
+            />
+            <ProjectItem
                 name={"Drone Delivery Database"}
                 description={"A MySQL database developed for a Georgia Tech CS4400 group project. I led a team of 4 people."}
                 img={dungeon}
                 alt={"Drone Delivery Database"}
                 url={"https://www.github.com"}
+                technologies={["MySQL", "MySQL Workbench", "EERD", "Database Constraints", "Excel"]}
             />
             <ProjectItem
                 name={"Android Dungeon Crawler"}
@@ -66,6 +87,7 @@ export function Projects() {
                 img={dungeon}
                 alt={"Dungeon Crawler Image"}
                 url={"https://www.github.com"}
+                technologies={["Java", "LibGDX", ""]}
             />
         </ul>
     )
