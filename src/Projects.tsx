@@ -54,6 +54,13 @@ export function Projects() {
     return (
         <ul className={"group"}>
             <ProjectItem
+                name={"courtney.ai"}
+                description={"A React.js and TypeScript based personal website."}
+                img={dungeon}
+                alt={"courtney.ai"}
+                url={"https://www.github.com"}
+            />
+            <ProjectItem
                 name={"Drone Delivery Database"}
                 description={"A MySQL database developed for a Georgia Tech CS4400 group project. I led a team of 4 people."}
                 img={dungeon}
