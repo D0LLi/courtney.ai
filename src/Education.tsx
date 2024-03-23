@@ -12,6 +12,7 @@ export function Education() {
                     employer={"3.84 GPA"}
                     description={"I'm currently majoring in Computer Science."}
                     url={""}
+                    technologies={["Work-Ethic", "Grey Hair", "Gold"]}
                 />
 
                 <ExperienceItem
@@ -20,6 +21,7 @@ export function Education() {
                     employer={"4.0 GPA"}
                     description={""}
                     url={""}
+                    technologies={["Work-Ethic", "Grey Hair", "Gold"]}
                 />
 
                 <ExperienceItem
@@ -28,6 +30,7 @@ export function Education() {
                     employer={"Diploma"}
                     description={""}
                     url={""}
+                    technologies={["Work-Ethic", "Grey Hair", "Gold"]}
                 />
             </ol>
         </div>
