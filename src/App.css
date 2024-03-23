@@ -311,13 +311,14 @@ div {
 .group-item {
     list-style: none;
     padding: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .group-block {
     display: block;
     grid-template-columns: repeat(8, minmax(0, 1fr));
     column-gap: 1rem;
+    padding-bottom: 0.25rem;
     position: relative;
     vertical-align: top;
 }
@@ -378,14 +379,6 @@ div {
     color: var(--text-color-norm);
 }
 
-.project-block {
-    display: block;
-    grid-template-columns: repeat(8, minmax(0, 1fr));
-    column-gap: 1rem;
-    position: relative;
-    vertical-align: top;
-}
-
 .project-img {
     color: transparent;
     border-width: 2px;
@@ -400,8 +393,7 @@ div {
     text-align: left;
     grid-column: 3 / span 6;
     grid-row: 1;
-    margin: 0;
-    padding: 0;
+    margin-bottom: 1rem;
 }
 
 .project-name {
