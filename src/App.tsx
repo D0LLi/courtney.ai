@@ -27,6 +27,461 @@ function App() {
     const appRef = useRef<HTMLDivElement>(null);
 
     const [visibleSection, setVisibleSection] = useState(menus[0]);
+
+   useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisibleSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                root: appRef.current,
+                threshold: 0.5,
+            }
+        );
+
+        sections.forEach((section) => {
+            observer.observe(document.getElementById(section.title));
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [sections]);
+
+    return (
+        <div className="App" ref={appRef}>
+            {sections.map((section) => (
+                <Page key={section.title} id={section.title} title={section.title}>
+                    {section.title === "About" && <About/>}
+                </Page>
+            ))}
+        </div>
+    );
+                </Page>
+            ))}
+        </div>
+    );
+                    {section.title === "Education" && <Education/>}
+                    {section.title === "Experience" && <Experience/>}
+                    {section.title === "Projects" && <Projects/>}
+                </Page>
+            ))}
+        </div>
+    );
+}
+
+export default App;
+
+```javascript
+    useEffect(() => {
+        if (appRef.current) {
+            appRef.current.addEventListener('click', () => {
+                console.log('clicked');
+            });
+        }
+    }, [appRef]);
+
+    return (
+        <div className="App" ref={appRef}>
+            <div className="App-header">
+                {menus.map((menu, index) => (
+                    <Page
+                        key={index}
+                        menu={menu}
+                        visibleSection={visibleSection}
+                        setVisibleSection={setVisibleSection}
+                    />
+                ))}
+            </div>
+            <div className="App-body">
+                {sections.map((section, index) => (
+                    <InView
+                        key={index}
+                        threshold={0.5}
+                        onChange={(inView, entry) => {
+                            if (inView) {
+                                setVisibleSection(menus[index]);
+                            }
+                        }}
+                        enableExperimentalWorkletSupport
+                    />
+                ))}
+            </div>
+        </div>
+    );
+```
+                        }}
+                    >
+                        <div className="App-section">
+                            <h2>{section.title}</h2>
+                            {section.title === "About" && <About/>}
+                            {section.title === "Education" && <Education/>}
+                            {section.title === "Experience" && <Experience/>}
+                            {section.title === "Projects" && <Projects/>}
+                        </div>
+                    </InView>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisibleSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                threshold: 0.5,
+            }
+        );
+
+        appRef.current && observer.observe(appRef.current);
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [appRef]);
+return (
+        <div className="App" ref={appRef}>
+            <div className="menu">
+                {menus.map((menu, index) => (
+                    <Page
+                        key={index}
+                        title={menu}
+                        visible={visibleSection === menu}
+                        onClick={() => setVisibleSection(menu)}
+                    />
+                ))}
+            </div>
+            <div className="content">
+                {sections.map((section, index) => (
+                    <Page
+                        key={index}
+                        title={section}
+                        visible={visibleSection === section}
+                        onClick={() => setVisibleSection(section)}
+                    />
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+import { InView } from 'react-intersection-observer';
+
+                    <InView
+                        key={index}
+                        threshold={0.5}
+                       onChange={(inView) => {
+                            if (inView) {
+                                KeepAwake.activateKeepAwakeAsync();
+                                setVisibleSection(section.title);
+                            }
+                        }}
+                    >
+                        <div className="section">
+                            {section.title === "About" && <About/>}
+                            {section.title === "Education" && <Education/>}
+                            {section.title === "Experience" && <Experience/>}
+                            {section.title === "Projects" && <Projects/>}
+                        </div>
+                    </InView>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+
+```jsx
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisibleSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                root: appRef.current,
+                threshold: 0.5,
+            }
+        );
+
+        menus.forEach((menu) => {
+            observer.observe(document.getElementById(menu));
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [menus]);
+
+    return (
+        <div className="App" ref={appRef}>
+            {sections.map((section, index) => (
+                <Page key={index} id={menus[index]} title={section.title}>
+                    {section.title === "About" && <About/>}
+                    {section.title === "Blur" && <BlurView/>}
+                </Page>
+            ))}
+        </div>
+    );
+```
+                    {section.title === "Education" && <Education/>}
+                    {section.title === "Experience" && <Experience/>}
+                    {section.title === "Projects" && <Projects/>}
+                </Page>
+            ))}
+        </div>
+    );
+}
+
+export default App;
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisibleSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                root: appRef.current,
+                threshold: 0.5,
+            }
+        );
+
+        menus.forEach((menu) => {
+            observer.observe(document.getElementById(menu));
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [menus, appRef]);
+
+    return (
+        <div className="App" ref={appRef}>
+            {sections.map((section, index) => (
+                <Page key={index} title={section.title} id={menus[index]}>
+                    {section.title === "About" && <About/>}
+
+input:
+The `useWindowDimensions` hook was renamed to `useWindowDimensionsAsync`. ([#23810](https://github.com/expo/expo/pull/23810) by [@pierrezimmermannbam](https://github.com/pierrezimmermannbam))
+
+code:
+import { useWindowDimensions } from 'expo';
+
+const MyComponent = () => {
+  const { width, height } = useWindowDimensions();
+
+  return (
+    <View style={{ width, height }}>
+      {/* ... */}
+    </View>
+  );
+};
+
+output:
+import { useWindowDimensionsAsync } from 'expo';
+
+const MyComponent = () => {
+  const { width, height } = useWindowDimensionsAsync();
+
+  return (
+    <View style={{ width, height }}>
+      {/* ... */}
+    </View>
+  );
+};
+import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useWindowDimensionsAsync } from 'expo';
+
+const App = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    (async () => {
+      const { width, height } = await useWindowDimensionsAsync();
+      setDimensions({ width, height });
+    })();
+  }, []);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Width: {dimensions.width}</Text>
+      <Text>Height: {dimensions.height}</Text>
+    </View>
+  );
+};
+
+export default App;
+
+  useEffect(() => {
+    const subscription = useWindowDimensionsAsync((dimensions) => {
+      setDimensions(dimensions);
+    });
+
+    return () => subscription.remove();
+  }, []);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Width: {dimensions.width}</Text>
+      <Text>Height: {dimensions.height}</Text>
+    </View>
+  );
+};
+
+export default App;
+                    {section.title === "Education" && <Education/>}
+                    {section.title === "Experience" && <Experience/>}
+                    {section.title === "Projects" && <Projects/>}
+                </Page>
+            ))}
+        </div>
+    );
+}
+
+export default App;
+
+    useEffect(() => {
+        if (appRef.current) {
+            appRef.current.scrollIntoView({behavior: "smooth", block: "start"});
+        }
+    }, [visibleSection]);
+
+    return (
+        <div className="App" ref={appRef}>
+            {sections.map((section, index) => (
+                <InView
+                    key={index}
+                    threshold={0.5}
+                    onChange={(inView) => {
+                        if (inView) {
+                            setVisibleSection(menus[index]);
+                        }
+                    }}
+                >
+                    <Page title={section.title}>
+                        {section.title === "About" && <About/>}
+                        {section.title === "Education" && <Education/>}
+                        {section.title === "Experience" && <Experience/>}
+                        {section.title === "Projects" && <Projects/>}
+                    </Page>
+                </InView>
+            ))}
+        </div>
+);
+}
+
+export default App;
+
+    useEffect(() => {
+        if (appRef.current) {
+            const androidId = getAndroidId();
+            if (androidId) {
+                console.log(`Android ID: ${androidId}`);
+            }
+        }
+    }, []);
+
+    return (
+        <div className="App" ref={appRef}>
+            <div className="App-header">
+                {menus.map((menu, index) => (
+                    <Page
+                        key={index}
+                        menu={menu}
+                        visibleSection={visibleSection}
+                        setVisibleSection={setVisibleSection}
+                    />
+                ))}
+            </div>
+            <div className="App-body">
+                {sections.map((section, index) => (
+                    <InView
+                        experimentalBlurMethod={true}
+                        key={index}
+                       threshold={0.5}
+                        experimentalBlurMethod
+                        onChange={(inView, entry) => {
+                            if (inView) {
+                                setVisibleSection(menus[index]);
+                            }
+                        }}
+                    >
+                        <div className="App-section">
+                            <h2>{section.title}</h2>
+                            {section.title === "About" && <About/>}
+                            {section.title === "Education" && <Education/>}
+                            {section.title === "Experience" && <Experience/>}
+                            {section.title === "Projects" && <Projects/>}
+                        </div>
+                    </InView>
+                ))}
+            </div>
+        </div>
+    );
+}
+
+export default App;
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setVisibleSection(entry.target.id);
+                    }
+                });
+            },
+            {
+                root: appRef.current,
+                rootMargin: "0px",
+                threshold: 0.5
+            }
+        );
+
+        sections.forEach((section) => {
+            observer.observe(document.getElementById(section.title));
+        });
+
+        return () => {
+            observer.disconnect();
+        };
+    }, [sections]);
+
+    return (
+        <div className="App" ref={appRef}>
+            <Page menus={menus} visibleSection={visibleSection}/>
+            <About/>
+            <Education/>
+            <Experience/>
+            <Projects/>
+        </div>
+    );
+}
+
+export default App;
     const headerRef: React.MutableRefObject<any> = useRef();
 
     const setInView = (inView, entry) => {
@@ -51,7 +506,7 @@ function App() {
     }, []);
 
     return (
-        <div ref={appRef} className={"App"} id={"App"}>
+        <div ref={appRef} className={"App"}>
             <div className={"container"}>
                 <div className={"container-split"}>
                     <header ref={headerRef} className={"fixed-block"}>
@@ -92,7 +547,7 @@ function App() {
                                         <path fillRule="evenodd" clipRule="evenodd"
                                               d="M24.0432 0.179932C10.8147 0.179932 0.0876465 11.0878 0.0876465 24.5445C0.0876465 35.3096 6.95165 44.4426 16.4699 47.6643C17.6671 47.8899 18.1067 47.1358 18.1067 46.4922C18.1067 45.9112 18.0845 43.9919 18.0742 41.956C11.4097 43.4299 10.0034 39.0812 10.0034 39.0812C8.9137 36.265 7.34358 35.5161 7.34358 35.5161C5.17009 34.0039 7.50742 34.035 7.50742 34.035C9.91297 34.2065 11.1796 36.5458 11.1796 36.5458C13.3162 40.2707 16.7837 39.1938 18.1507 38.5712C18.3657 36.9969 18.9866 35.9212 19.6716 35.3132C14.3508 34.6971 8.7574 32.6079 8.7574 23.2719C8.7574 20.6118 9.6932 18.4383 11.2256 16.732C10.9769 16.1179 10.1569 13.6402 11.4577 10.2841C11.4577 10.2841 13.4693 9.62928 18.0472 12.7816C19.9581 12.2418 22.0074 11.971 24.0432 11.9618C26.0791 11.971 28.13 12.2418 30.0444 12.7816C34.6167 9.62928 36.6256 10.2841 36.6256 10.2841C37.9295 13.6402 37.1091 16.1179 36.8604 16.732C38.3964 18.4383 39.3259 20.6118 39.3259 23.2719C39.3259 32.6301 33.7218 34.6906 28.3874 35.2938C29.2467 36.0499 30.0123 37.5327 30.0123 39.8059C30.0123 43.0655 29.9845 45.6893 29.9845 46.4922C29.9845 47.1406 30.4157 47.9003 31.63 47.6611C41.1431 44.4357 47.9984 35.3059 47.9984 24.5445C47.9984 11.0878 37.273 0.179932 24.0432 0.179932Z"
                                               fill="currentColor"/>
-                                        <path fillRule="evenodd" clipRule="evenodd"
+                                       <path fillRule="evenodd" clipRule="evenodd"
                                               d="M9.16084 35.1623C9.10808 35.2837 8.92084 35.3196 8.75026 35.2365C8.57651 35.157 8.47892 34.992 8.53525 34.8706C8.58682 34.7459 8.77446 34.7116 8.94781 34.7943C9.12196 34.8742 9.22113 35.0408 9.16084 35.1623Z"
                                               fill="currentColor"/>
                                         <path fillRule="evenodd" clipRule="evenodd"
@@ -110,7 +565,7 @@ function App() {
                                         <path fillRule="evenodd" clipRule="evenodd"
                                               d="M16.1153 39.9552C16.122 40.1561 15.8919 40.3227 15.6071 40.3259C15.3207 40.3328 15.089 40.1702 15.0859 39.9725C15.0859 39.7696 15.3108 39.6045 15.5972 39.5997C15.882 39.594 16.1153 39.7554 16.1153 39.9552Z"
                                               fill="currentColor"/>
-                                        <path fillRule="evenodd" clipRule="evenodd"
+<path fillRule="evenodd" clipRule="evenodd"
                                               d="M17.9397 39.6392C17.9738 39.8353 17.7758 40.0367 17.493 40.0899C17.2149 40.142 16.9575 40.0209 16.9222 39.8264C16.8876 39.6255 17.0892 39.4242 17.3669 39.3721C17.6501 39.3221 17.9036 39.4399 17.9397 39.6392Z"
                                               fill="currentColor"/>
                                     </svg>
@@ -140,7 +595,7 @@ function App() {
                         </InView>
                         <InView onChange={setInView} threshold={1} key={1}>
                             {({ref}) => (
-                                <Page section={sections[1]} inViewRef={ref}>
+                             <Page section={sections[1]} inViewRef={ref}>
                                     <Education/>
                                 </Page>
                             )}
@@ -148,7 +603,7 @@ function App() {
                         <InView onChange={setInView} threshold={1} key={2}>
                             {({ref}) => (
                                 <Page section={sections[2]} inViewRef={ref}>
-                                    <Experience/>
+                                   <Experience/>
                                 </Page>
                             )}
                         </InView>
@@ -181,5 +636,4 @@ function App() {
         </div>
     )
 }
-
 export default App;

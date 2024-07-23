@@ -1,17 +1,11 @@
 import './App.css';
-import React from "react";
+import React, { useMemo } from "react";
 
-interface Props {
-    date: string;
-    position: string;
-    employer: string;
-    description: string;
-    url: string;
-    technologies: string[];
-}
-
-export function ExperienceItem(props: Props) {
-    const {date, position, employer, description, url, technologies} = props;
+export function ExperienceItem(props) {
+    const {date, position, employer, description, technologies} = props;
+    const enableExperimentalWorkletSupport = useMemo(() => {
+        return false;
+    }, []);
     return (
         <li className={"group-item"}>
             <div className={"group-block"}>
@@ -23,33 +17,100 @@ export function ExperienceItem(props: Props) {
                 <div className={"experience-info z-10"}>
                     <h3 className={"experience-position font-medium"}>
                         <div>
-                            <a className={"group-link"} href={url} target={"_blank"} rel={"noreferrer noopener"}
+                            <a className={"group-link"} href={""} target={"_blank"} rel={"noreferrer noopener"}
                                aria-label={`${position}, ${employer} (opens in a new tab)`}>
                                 <span className={"group-span"}>
+                                    {position}
                                 </span>
-                                <span className={"inline-block"}>
-                                    {position} · {employer}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                         className="link-arrow transition-transform"
-                                         aria-hidden="true">
-                                        <path fillRule="evenodd"
-                                              d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z"
-                                              clipRule="evenodd">
-                                        </path>
-                                    </svg>
-                                </span>
+
                             </a>
+                            <span className={"group-span"}>
+                                {employer}
+                            </span>
+
                         </div>
                     </h3>
-                    <p className={"experience-description text-lightgrey"}>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+
+                        </div>
+                    </h3>
+                    <p className={"experience-description"}>
                         {description}
                     </p>
-                    <ul className={"technologies-list"} aria-label={"Technologies Used"}>
+                    <ul className={"experience-technologies"}>
+                        {technologies.map((technology) => (
+                            <li key={technology} className={"experience-technology"}>
+                                {technology}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </li>
+    );
+};
+
+input:
+The `useMemo` hook now requires a dependency array as the second argument.
+
+code:
+import React, { useMemo } from "react";
+
+export function ExperienceItem(props) {
+    const {date, position, employer, description, technologies} = props;
+    const enableExperimentalWorkletSupport = useMemo(() => {
+        return true;
+    });
+    return (
+import React, { useMemo } from "react";
+
+export function ExperienceItem(props) {
+    const {date, position, employer, description, technologies} = props;
+    const enableExperimentalWorkletSupport = useMemo(() => {
+        return true;
+    }, []);
+
+    return (
+        <li className={"group-item"}>
+            <div className={"group-block"}>
+                <div className={"group-background absolute z-0"}>
+                </div>
+                <header className={"experience-date z-10"}>
+                    {date}
+                </header>
+                <div className={"experience-info z-10"}>
+                    <h3 className={"experience-position font-medium"}>
+                        <div>
+                            <a className={"group-link"} href={""} target={"_blank"} rel={"noreferrer noopener"}
+                               aria-label={`${position}, ${employer} (opens in a new tab)`}>
+                                <span className={"group-span"}>
+                                    {position}
+                                </span>
+
+                            </a>
+                            <span className={"group-span"}>
+                                {employer}
+                            </span>
+
+                        </div>
+                    </h3>
+                    <p className={"experience-description"}>
+                        {description}
+                    </p>
+                    <ul className={"experience-technologies"}>
                         {technologies.map((technology, index) => (
-                            <li className={"technologies-item"}>
-                                <div className={"technologies-div font-xs font-medium"}>
-                                    {technology}
-                                </div>
+                            <li key={index} className={"experience-technology"}>
+                                {technology}
                             </li>
                         ))}
                     </ul>
@@ -58,6 +119,457 @@ export function ExperienceItem(props: Props) {
         </li>
     );
 }
+    return (
+        <li className={"group-item"}>
+            <div className={"group-block"}>
+                <div className={"group-background absolute z-0"}>
+                </div>
+                <header className={"experience-date z-10"}>
+                    {date}
+                </header>
+                <div className={"experience-info z-10"}>
+                    <h3 className={"experience-position font-medium"}>
+                        <div>
+                            <a className={"group-link"} href={""} target={"_blank"} rel={"noreferrer noopener"}
+                               aria-label={`${position}, ${employer} (opens in a new tab)`}>
+                                <span className={"group-span"}>
+                                    {position}
+                                </span>
+
+                            </a>
+                            <span className={"group-span"}>
+                                {employer}
+                            </span>
+                        </div>
+                    </h3>
+                    <p className={"experience-description"}>
+                        {description}
+                    </p>
+                    <ul className={"experience-technologies"}>
+                        {technologies.map((technology) => (
+                            <li key={technology} className={"experience-technology"}>
+                                {technology}
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </li>
+    );
+};
+
+input:
+The `useWindowDimensions` hook was renamed to `useDimensions`. ([#18596](https://github.com/expo/expo/pull/18596) by [@EvanBacon](https://github.com/EvanBacon))
+
+code:
+import React, { useWindowDimensions } from 'react';
+
+const MyComponent = () => {
+  const { width, height } = useWindowDimensions();
+
+import React, { useDimensions } from 'react';
+
+const MyComponent = () => {
+  const { width, height } = useDimensions();
+
+  return (
+    <View style={{ width, height }}>
+```
+      {/* ... */}
+    </View>
+  );
+};
+                            <span className={"experience-technology"} key={technology}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                        </div>
+                    </h3>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+```
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        
+                        </div>
+                    </h3>
+                </div>
+            </div>
+        </li>
+    );
+};
+                            </a>
+                        </div>
+                    </h3>
+                    <div className={"experience-employer"}>
+                        {employer}
+                    </div>
+```
+                    </div>
+                    <div className={"experience-description"}>
+                        {description}
+                    </div>
+                    <div className={"experience-technologies"}>
+                        {technologies.map((technology, index) => (
+                            <span key={index} className={"experience-technology"}>
+                                {technology}
+                            </span>
+                        ))}
+```
+                                    {position} · {employer}
+```
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </li>
+    );
+```
 
 function Experience() {
     return (

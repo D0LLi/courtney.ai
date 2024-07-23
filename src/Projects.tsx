@@ -1,18 +1,8 @@
 import React from "react";
 import './App.css';
-import dungeon from "./media/dungeon-crawler.png";
+import dungeon from "_/media/dungeon-crawler.png";
 
-
-interface Props {
-    name: string;
-    description: string;
-    img: string;
-    alt: string;
-    url: string;
-    technologies: string[];
-}
-
-function ProjectItem(props: Props) {
+function ProjectItem(props) {
     const {name, description, img, alt, url, technologies} = props;
     return (
         <li className={"group-item"}>
@@ -28,7 +18,69 @@ function ProjectItem(props: Props) {
                                 </span>
                                 <span className={"inline-block"}>
                                     {name}
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                </span>
+                            </a>
+                        </div>
+                    </h3>
+                </div>
+            </div>
+        </li>
+    );
+};
+        </li>
+    );
+};
+        </li>
+    );
+};
+        </li>
+    );
+};
+                                </span>
+                            </a>
+                        </div>
+                                </span>
+                            </a>
+                        </div>
+                        <div className={"project-description"}>
+                            {description}
+                        </div>
+                        <div className={"project-technologies"}>
+                            {technologies.map((technology, index) => (
+                                <span key={index} className={"project-technology"}>
+                                    {technology}
+                                </span>
+                            ))}
+                        </div>
+                    </h3>
+                </div>
+                <div className="project-image">
+                    <img src={img} alt={alt} />
+                </div>
+            </div>
+```jsx
+        </li>
+    );
+}
+```
+                        </div>
+                                    {technology}
+                                </span>
+                            ))}
+                        </div>
+                    </h3>
+                </div>
+                <div className={"project-image"}>
+                    <img src={img} alt={alt} />
+                </div>
+            </div>
+        </li>
+    );
+};
+
+export default ProjectItem;
+                                    {name}
+                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                                          className="link-arrow transition-transform"
                                          aria-hidden="true">
                                         <path fillRule="evenodd"
@@ -55,7 +107,7 @@ function ProjectItem(props: Props) {
                 </div>
                 <img className={"project-img z-10"} alt={alt}
                      loading={"lazy"} width={"200"} height={"48"} decoding={"async"}
-                     src={img}>
+                     src={img.replace('../', '_')}>
                 </img>
             </div>
         </li>
@@ -87,6 +139,22 @@ export function Projects() {
                 img={dungeon}
                 alt={"Dungeon Crawler Image"}
                 url={"https://www.github.com"}
+                technologies={["Java", "Android Studio", "Android SDK", "Android Emulator", "Git"]}
+            />
+                technologies={["Java", "Android Studio", "Android SDK", "XML", "SQLite"]}
+            />
+        </ul>
+    );
+}
+            />
+        </ul>
+    );
+}
+                technologies={["Java", "Android Studio", "SQLite", "XML", "Git"]}
+            />
+        </ul>
+    );
+}
                 technologies={["Java", "LibGDX", ""]}
             />
         </ul>
