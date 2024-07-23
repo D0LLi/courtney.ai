@@ -1,12 +1,6 @@
 import React from "react";
 
-interface Props {
-    section: { title: string },
-    inViewRef: any,
-    children: any
-}
-
-const Page = (props: Props) => {
+const Page = (props) => {
     const {section, inViewRef, children} = props;
 
     return (
@@ -22,5 +16,4 @@ const Page = (props: Props) => {
         </section>
     );
 };
-
 export default Page;

@@ -27,6 +27,29 @@ export function Education() {
                 <ExperienceItem
                     date={"Graduated"}
                     position={"Harrison High School"}
+                />
+            </ol>
+        </div>
+    );
+}
+                    employer={"4.0 GPA"}
+                    description={""}
+                    url={""}
+                    technologies={["Work-Ethic", "Grey Hair", "Gold"]}
+                />
+            </ol>
+        </div>
+    );
+}
+                    employer={""}
+                    description={""}
+                    url={""}
+                    technologies={[]}
+                />
+            </ol>
+        </div>
+    );
+}
                     employer={"Diploma"}
                     description={""}
                     url={""}
